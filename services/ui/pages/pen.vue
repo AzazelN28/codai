@@ -1,0 +1,3 @@
+<template>
+  <Pen />
+</template>

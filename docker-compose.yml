@@ -1,0 +1,57 @@
+version: '3.6'
+services:
+  #
+  # NGINX Gateway
+  #
+  nginx:
+    image: nginx:1.23.3
+    volumes:
+      - ./services/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./services/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
+      - ./services/nginx/certs/localhost.crt:/certs/localhost.crt
+      - ./services/nginx/certs/localhost.key:/certs/localhost.key
+    ports:
+      - 8080:80
+    depends_on:
+      - api
+      - ui
+
+  #
+  # Application Programming Interface
+  #
+  api:
+    image: node:18
+    user: "node"
+    working_dir: /home/node/services/api
+    volumes:
+      - ./services/api:/home/node/services/api
+      - ./pnpm-workspace.yaml:/home/node/pnpm-workspace.yaml
+      - ./node_modules:/home/node/node_modules
+      - ./packages:/home/node/packages
+    ports:
+      - 8082:3000
+    command: "npm run dev"
+    environment:
+      DEBUG: api,api:*
+
+  #
+  # User Interface
+  #
+  ui:
+    image: node:18
+    user: "node"
+    working_dir: /home/node/services/ui
+    volumes:
+      - ./services/ui:/home/node/services/ui
+      - ./node_modules:/home/node/node_modules
+      - ./packages:/home/node/packages
+    ports:
+      - 8084:3000
+      # necesario para los WebSockets de Nuxt
+      - 24678:24678
+    command: "npm run dev"
+    depends_on:
+      - api
+    environment:
+      DEBUG: ui,ui:* 
+
