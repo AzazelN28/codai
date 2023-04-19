@@ -17,8 +17,14 @@ const props = defineProps({
 
 const src = computed(() => `/api/v1/pens/${props.id}/iframe`)
 
+let sse
+
 onMounted(() => {
-  const sse = new EventSource(`/api/v1/pens/${props.id}/sse`)
+  if (sse && sse.readyState !== 2) {
+      sse.close()
+  }
+
+  sse = new EventSource(`/api/v1/pens/${props.id}/sse`)
   sse.onerror = (e) => console.error(e)
   sse.onmessage = (e) => {
     console.log(e, iframe.value)
@@ -26,6 +32,12 @@ onMounted(() => {
   }
   sse.onopen = (e) => console.log(e)
   console.log('sse', sse)
+})
+
+onUnmounted(() => {
+  if (sse && sse.readyState !== 2) {
+    sse.close()
+  }
 })
 </script>
 

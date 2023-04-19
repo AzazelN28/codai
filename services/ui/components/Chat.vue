@@ -8,7 +8,7 @@
       </div>
     </div>
     <form class="send" @submit.prevent="onSubmit">
-      <input v-if="recording !== 'started'" type="text" :disabled="sending" v-model="message" />
+      <input v-if="recording !== 'started'" ref="text" type="text" :disabled="sending" v-model="message" />
       <canvas ref="audio" v-else></canvas>
       <button type="button" :disabled="sending" @click="onMic">
         <i v-if="recording !== 'started'" class="bx bx-microphone"></i>
@@ -52,8 +52,9 @@ const sending = ref(false)
 const recording = ref('stopped')
 const message = ref('')
 const audio = ref(null)
+const text = ref(null)
 
-let mediaRecorder
+let mediaRecorder, top, left, width, height
 
 async function onMic() {
   if (recording.value === 'starting' || recording.value === 'stopping')
@@ -84,22 +85,27 @@ async function onMic() {
 
       if (!canvasContext && canvas) {
         canvasContext = canvas.getContext('2d')
+      }
+
+      if (!canvas || !canvasContext) {
         frameId = requestAnimationFrame(onFrame)
         return
       }
 
-      const expectedWidth = canvas.clientWidth
-      if (canvas.width !== expectedWidth) {
-        canvas.width = expectedWidth
+      // const expectedWidth = canvas.clientWidth
+      if (canvas.width !== width) {
+        canvas.width = width
       }
 
-      if (canvas.height !== expectedWidth) {
-        canvas.height = expectedWidth
+      // const expectedHeight = canvas.clientHeight
+      if (canvas.height !== height) {
+        canvas.height = height
       }
+
+      analyser.getFloatTimeDomainData(data)
 
       const ctx = canvasContext
       ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
-      analyser.getFloatTimeDomainData(data)
       ctx.beginPath()
       for (let i = 0; i < data.length; i++) {
         const value = data[i]
@@ -111,7 +117,7 @@ async function onMic() {
           ctx.lineTo(x, y)
         }
       }
-      ctx.strokeStyle = '#fff'
+      ctx.strokeStyle = '#000'
       ctx.stroke()
 
       frameId = requestAnimationFrame(onFrame)
@@ -158,6 +164,9 @@ async function onMic() {
       sending.value = false
     }
     mediaRecorder.start()
+
+    ({ top, left, width, height } = text.value.getBoundingClientRect());
+
     recording.value = 'starting'
   } else {
     mediaRecorder.stop()
@@ -226,6 +235,10 @@ async function onSubmit() {
 
 .send {
   display: flex;
+}
+
+canvas {
+  background-color: #fff;
 }
 
 input[type="text"] {
