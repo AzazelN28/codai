@@ -31,8 +31,12 @@ services:
     ports:
       - 8082:3000
     command: "npm run dev"
+    depends_on:
+      - redis
     environment:
       DEBUG: api,api:*
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
 
   #
   # User Interface
@@ -53,5 +57,9 @@ services:
     depends_on:
       - api
     environment:
-      DEBUG: ui,ui:* 
+      DEBUG: ui,ui:*
 
+  redis:
+    image: redis:6.2.6
+    ports:
+      - 8085:6379

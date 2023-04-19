@@ -7,18 +7,37 @@
   box-sizing: border-box;
 }
 
-html, body {
-  background: var(--background-color);
-  color: var(--text-color);
-
+html,
+body {
   margin: 0;
-  padding: 0;
-  width: 100%;
   height: 100%;
+}
+
+body {
+  font-family: sans-serif;
+  font-size: 18px;
+  background-color: hsl(0 0% 10%);
+  color: hsl(0 0% 80%);
+  scrollbar-color: #999 #333;
 }
 
 #codai {
   display: grid;
-  width: 100%;
   height: 100%;
+  overflow: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: hsl(0 0% 40%);
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 0.5rem hsl(0 0% 0% / 15%);
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
 }

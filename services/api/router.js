@@ -1,8 +1,18 @@
 import Router from '@koa/router'
-import chat from './routes/chat.js'
+import chats from './routes/chats.js'
+import pens from './routes/pens.js'
 
-const chatRouter = new Router()
-chatRouter.post('/chat', chat.create)
+const chatsRouter = new Router()
+chatsRouter.get('/:id', chats.list)
+chatsRouter.post('/:id', chats.create)
+chatsRouter.post('/:id/audio', chats.audio)
+
+const pensRouter = new Router()
+pensRouter.post('/', pens.create)
+pensRouter.get('/:id', pens.get)
+pensRouter.get('/:id/iframe', pens.iframe)
+pensRouter.get('/:id/sse', pens.sse)
+pensRouter.put('/:id', pens.update)
 
 const router = new Router()
 router
@@ -12,6 +22,7 @@ router
       version: '1.0.0'
     }
   })
-  .use(chatRouter.routes(), chatRouter.allowedMethods())
+  .use('/chats', chatsRouter.routes(), chatsRouter.allowedMethods())
+  .use('/pens', pensRouter.routes(), pensRouter.allowedMethods())
 
 export default router

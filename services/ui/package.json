@@ -16,7 +16,11 @@
     "@codemirror/lang-html": "^6.4.3",
     "@codemirror/lang-javascript": "^6.1.6",
     "@pinia/nuxt": "^0.4.8",
+    "boxicons": "^2.1.4",
     "codemirror": "^6.0.1",
+    "highlight.js": "^11.7.0",
+    "http-status-codes": "^2.2.0",
+    "marked": "^4.3.0",
     "pinia": "^2.0.34"
   }
 }

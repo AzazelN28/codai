@@ -1,19 +1,19 @@
 <template>
-  <div class="editors">
-    <Editor language="html"></Editor>
-    <Editor language="css"></Editor>
-    <Editor language="js"></Editor>
-  </div>
+  <Editor language="html" :id="id" :source="penStore.html"></Editor>
+  <Editor language="css" :id="id" :source="penStore.css"></Editor>
+  <Editor language="js" :id="id" :source="penStore.js"></Editor>
 </template>
 
 <script setup>
+import { usePenStore } from '~/stores/pen.js'
 
+const penStore = usePenStore()
+
+const props = defineProps({
+  id: {
+    type: String,
+    required: false,
+    default: null
+  }
+})
 </script>
-
-<style>
-.editors {
-  grid-area: editors;
-  display: flex;
-  flex-direction: column;
-}
-</style>
