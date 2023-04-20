@@ -35,7 +35,7 @@ export async function get(ctx) {
         file.write(chunk)
       }
     })
-    response.body.pipeTo(writableFile)
+    await response.body.pipeTo(writableFile)
   }
   ctx.set('Cross-Origin-Resource-Policy', 'same-site')
   ctx.set('Content-Type', 'image/png')
