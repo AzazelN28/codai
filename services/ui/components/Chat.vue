@@ -1,9 +1,9 @@
 <template>
   <div class="chat panel">
     <div class="container">
-      <div class="messages">
+      <div class="messages" v-scroll-bottom>
         <div class="message" :class="message.role" v-for="message in chatStore.messages" :key="message.id">
-          <div class="content" v-html="marked(message.message, { highlight })"></div>
+          <div class="content" v-html="markdown(message.message)"></div>
         </div>
       </div>
     </div>
@@ -30,6 +30,10 @@ import { useChatStore } from '~/stores/chat.js'
 function highlight (code, lang) {
   const language = hljs.getLanguage(lang) ? lang : 'plaintext'
   return hljs.highlight(code, { language }).value
+}
+
+function markdown(code) {
+  return marked(code, { highlight })
 }
 
 const props = defineProps({

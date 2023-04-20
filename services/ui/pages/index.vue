@@ -26,6 +26,9 @@
 <script setup>
 import Status from 'http-status-codes'
 
+const head = useHead({
+  title: 'CodAI',
+})
 const router = useRouter()
 
 async function onClick(e) {

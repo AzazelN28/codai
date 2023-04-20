@@ -68,6 +68,7 @@ importers:
       '@codemirror/lang-css': ^6.1.1
       '@codemirror/lang-html': ^6.4.3
       '@codemirror/lang-javascript': ^6.1.6
+      '@codemirror/theme-one-dark': ^6.1.2
       '@pinia/nuxt': ^0.4.8
       boxicons: ^2.1.4
       codemirror: ^6.0.1
@@ -81,6 +82,7 @@ importers:
       '@codemirror/lang-css': 6.1.1
       '@codemirror/lang-html': 6.4.3
       '@codemirror/lang-javascript': 6.1.6
+      '@codemirror/theme-one-dark': 6.1.2
       '@pinia/nuxt': 0.4.8
       boxicons: 2.1.4
       codemirror: 6.0.1
@@ -479,6 +481,15 @@ packages:
 
   /@codemirror/state/6.2.0:
     resolution: {integrity: sha512-69QXtcrsc3RYtOtd+GsvczJ319udtBf1PTrr2KbLWM/e2CXUPnh0Nz9AUo8WfhSQ7GeL8dPVNUmhQVgpmuaNGA==}
+    dev: false
+
+  /@codemirror/theme-one-dark/6.1.2:
+    resolution: {integrity: sha512-F+sH0X16j/qFLMAfbciKTxVOwkdAS336b7AXTKOZhy8BR3eH/RelsnLgLFINrpST63mmN2OuwUt0W2ndUgYwUA==}
+    dependencies:
+      '@codemirror/language': 6.6.0
+      '@codemirror/state': 6.2.0
+      '@codemirror/view': 6.9.4
+      '@lezer/highlight': 1.1.4
     dev: false
 
   /@codemirror/view/6.9.4:

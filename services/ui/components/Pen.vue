@@ -58,7 +58,7 @@ onMounted(async () => {
   width: 100%;
   height: 100%;
   max-height: 100vh;
-  grid-template-rows: auto 1fr auto;
+  grid-template-rows: 4rem 1fr 4rem;
 }
 
 header, footer {

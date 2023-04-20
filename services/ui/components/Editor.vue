@@ -18,6 +18,7 @@ import { EditorState, Compartment } from '@codemirror/state'
 import { javascript } from '@codemirror/lang-javascript'
 import { html } from '@codemirror/lang-html'
 import { css } from '@codemirror/lang-css'
+import { oneDark } from '@codemirror/theme-one-dark'
 
 const editor = ref(null)
 
@@ -81,6 +82,7 @@ onMounted(() => {
     doc: props.source,
     extensions: [
       basicSetup,
+      oneDark,
       getLanguageConf(props.language),
       EditorView.updateListener.of(async (view) => {
         if (view.docChanged) {
@@ -138,6 +140,6 @@ onUnmounted(() => view.destroy())
 .cm-scroller {
   overflow: auto;
   max-width: 32vw;
-  max-height: 26vh;
+  max-height: 22vh;
 }
 </style>

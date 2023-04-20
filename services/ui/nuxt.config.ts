@@ -6,6 +6,9 @@ export default defineNuxtConfig({
   modules: [
     '@pinia/nuxt'
   ],
+  plugins: [
+    '~/plugins/directives.client.js'
+  ],
   pinia: {
     autoImports: [
       // automatically imports `defineStore`

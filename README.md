@@ -4,6 +4,11 @@
 
 CodAI es una especie de pseudo clon de CodePen con funcionalidades de IA como poder entrar audio, texto, etc.
 
+## ¿Qué le ha faltado?
+
+1. Terminar de implementar el servicio de [Whisper](https://openai.com/research/whisper) en local.
+2. Que los 3 paneles de HTML, CSS, JavaScript sirvan también como "fuentes" del chat.
+
 ## Cómo ejecutarlo
 
 Necesitarás [docker](https://docs.docker.com) y [docker-compose](https://docs.docker.com/compose/).
