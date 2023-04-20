@@ -12,7 +12,7 @@
       <Preview :id="id" :t="t"></Preview>
     </main>
     <footer>
-      <!-- NADA -->
+      <h6>AI, taking your jobs, one by one, since 2023.</h6>
     </footer>
   </div>
 </template>

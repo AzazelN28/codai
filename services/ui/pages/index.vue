@@ -1,9 +1,11 @@
 <template>
-  <main>
+  <header>
     <div class="logo">
       <i class="bx bx-brain"></i>
       <h1>CodAI</h1>
     </div>
+  </header>
+  <main>
     <div class="cta">
       <button type="submit" @click="onClick">
         New pen
@@ -55,6 +57,11 @@ async function onClick(e) {
 
 .logo .bx {
   font-size: 10rem;
+}
+
+header {
+  display: grid;
+  place-items: center;
 }
 
 main {
