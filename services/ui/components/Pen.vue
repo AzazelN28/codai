@@ -9,7 +9,7 @@
     <main>
       <Chat :id="id"></Chat>
       <Editors :id="id"></Editors>
-      <Preview :id="id"></Preview>
+      <Preview :id="id" :t="t"></Preview>
     </main>
     <footer>
       <!-- NADA -->
@@ -32,7 +32,16 @@ const props = defineProps({
   }
 })
 
+const t = ref(Date.now())
 const loading = ref(true)
+
+useEventSource(`/api/v1/pens/${props.id}/sse`, (e) => {
+  console.log(e)
+  if (e.type === 'message') {
+    t.value = Date.now()
+    penStore.getPen(props.id)
+  }
+})
 
 onMounted(async () => {
   await Promise.all([

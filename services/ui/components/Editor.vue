@@ -11,6 +11,7 @@
 </template>
 
 <script setup>
+import _ from 'lodash'
 import { basicSetup, EditorView } from 'codemirror'
 import { EditorState, Compartment } from '@codemirror/state'
 // import { language } from '@codemirror/language'
@@ -44,6 +45,23 @@ function getLanguageConf(language) {
   }
 }
 
+async function updateSourceCode(language, sourceCode) {
+  const response = await fetch(`/api/v1/pens/${props.id}`, {
+    method: 'put',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      [language]: sourceCode
+    })
+  })
+  const payload = await response.text()
+  console.log(payload)
+  return payload
+}
+
+const debouncedUpdateSourceCode = _.debounce(updateSourceCode, 1000)
+
 let view
 
 onUpdated(() => {
@@ -66,18 +84,7 @@ onMounted(() => {
       getLanguageConf(props.language),
       EditorView.updateListener.of(async (view) => {
         if (view.docChanged) {
-          // Document changed
-          console.log(view.docChanged)
-          const response = await fetch(`/api/v1/pens/${props.id}`, {
-            method: 'put',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              [props.language]: view.state.doc.toString()
-            })
-          })
-          console.log(await response.text())
+          debouncedUpdateSourceCode(props.language, view.state.doc.toString())
         }
       })
     ],

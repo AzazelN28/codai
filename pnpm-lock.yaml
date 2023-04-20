@@ -73,6 +73,7 @@ importers:
       codemirror: ^6.0.1
       highlight.js: ^11.7.0
       http-status-codes: ^2.2.0
+      lodash: ^4.17.21
       marked: ^4.3.0
       nuxt: ^3.4.1
       pinia: ^2.0.34
@@ -85,6 +86,7 @@ importers:
       codemirror: 6.0.1
       highlight.js: 11.7.0
       http-status-codes: 2.2.0
+      lodash: 4.17.21
       marked: 4.3.0
       pinia: 2.0.34
     devDependencies:

@@ -9,6 +9,15 @@
         New pen
       </button>
     </div>
+    <!-- Textos generados por ChatGPT xD -->
+    <!--
+    <section>
+      <p>Introduciendo el nuevo servicio de desarrollo web impulsado por inteligencia artificial: CodAI. ¿Estás cansado de perder tiempo en el desarrollo de sitios web? ¿Te gustaría tener un editor de código que te ayude a ser más productivo y eficiente? CodAI es la solución que has estado buscando.</p>
+      <p>CodAI utiliza inteligencia artificial para ayudarte a escribir código más rápido y de manera más eficiente. Nuestro sistema de autocompletado predictivo sugiere el código más relevante para que puedas completar tus líneas de código en un instante. También puedes aprovechar nuestras sugerencias de corrección de errores para evitar errores comunes en el código.</p>
+      <p>Nuestro servicio también incluye un entorno de pruebas en vivo para que puedas ver tus cambios en tiempo real. Y cuando hayas terminado, puedes compartir tus proyectos directamente desde CodAI en las redes sociales o en tu propio sitio web.</p>
+      <p>En resumen, CodAI es la solución perfecta para cualquier desarrollador que busque mejorar su flujo de trabajo y aumentar su productividad. Únete a nuestra comunidad de desarrolladores hoy y descubre por ti mismo cómo CodAI puede ayudarte a llevar tus habilidades de desarrollo web al siguiente nivel.</p>
+    </section>
+    -->
   </main>
 </template>
 
@@ -71,5 +80,14 @@ button:hover {
   font-size: 2.5rem;
 
   background-size: 150%;
+}
+
+section {
+  max-width: 960px;
+}
+
+p {
+  font-size: 1.25rem;
+  line-height: 1.85rem;
 }
 </style>

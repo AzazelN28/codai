@@ -1,6 +1,6 @@
 <template>
   <div class="preview panel">
-    <iframe ref="iframe" :src="src" sandbox="allow-scripts"></iframe>
+    <iframe :src="src" sandbox="allow-scripts"></iframe>
   </div>
 </template>
 
@@ -12,35 +12,15 @@ const props = defineProps({
     type: String,
     required: false,
     default: null
+  },
+  t: {
+    type: Number,
+    required: false,
+    default: null
   }
 })
 
-const t = ref(Date.now())
-const src = computed(() => `/api/v1/pens/${props.id}/iframe?t=${t.value}}`)
-
-let sse
-
-onMounted(() => {
-  if (sse && sse.readyState !== 2) {
-      sse.close()
-  }
-
-  sse = new EventSource(`/api/v1/pens/${props.id}/sse`)
-  sse.onerror = (e) => console.error(e)
-  sse.onmessage = (e) => {
-    console.log(e, iframe.value)
-    // iframe.value.src = iframe.value.script
-    t.value = Date.now()
-  }
-  sse.onopen = (e) => console.log(e)
-  console.log('sse', sse)
-})
-
-onUnmounted(() => {
-  if (sse && sse.readyState !== 2) {
-    sse.close()
-  }
-})
+const src = computed(() => `/api/v1/pens/${props.id}/iframe?t=${props.t}}`)
 </script>
 
 <style scoped>
