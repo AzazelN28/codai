@@ -24,6 +24,7 @@ export async function list(ctx) {
 }
 
 /**
+ * Creates a chat message.
  *
  * @param {Koa.Context} ctx
  * @param {string} message
@@ -34,26 +35,23 @@ async function chat(ctx, text) {
     model: process.env.OPENAI_TEXT_MODEL ?? 'gpt-3.5-turbo'
   }
 
-  // const completion = await ctx.openai.createChatCompletion(config)
   const chatMessages = await ctx.db.Chat.findAll({
     where: {
       pen_id: ctx.params.id,
     },
   })
-  // console.log(chatMessages.forEach((message) => console.log(message.content)))
 
   const newUserChat = await ctx.db.Chat.create({
     pen_id: ctx.params.id,
     role: 'user',
     message: text
   })
-  // console.log(newUserChat)
 
   const baseMessages = [
     {
       role: 'system',
       content:
-        'You are a helpful HTML developer that generates a single HTML code with CSS and JavaScript',
+        'You are a helpful HTML developer that generates a single HTML code with CSS and JavaScript. All images should point to http://localhost:8080/api/v1/images?prompt=<put the image description here>.',
     },
   ]
   const messages = baseMessages

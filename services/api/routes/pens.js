@@ -59,6 +59,12 @@ export async function get(ctx) {
   ctx.body = newPen
 }
 
+/**
+ * Generates the HTML for the iframe.
+ *
+ * @param {Koa.Context} ctx
+ * @returns {Promise}
+ */
 export async function iframe(ctx) {
   const newPen = await ctx.db.Pen.findByPk(ctx.params.id)
   if (!newPen) {

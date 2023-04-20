@@ -15,7 +15,8 @@ const props = defineProps({
   }
 })
 
-const src = computed(() => `/api/v1/pens/${props.id}/iframe`)
+const t = ref(Date.now())
+const src = computed(() => `/api/v1/pens/${props.id}/iframe?t=${t.value}}`)
 
 let sse
 
@@ -28,7 +29,8 @@ onMounted(() => {
   sse.onerror = (e) => console.error(e)
   sse.onmessage = (e) => {
     console.log(e, iframe.value)
-    iframe.value.src = iframe.value.src
+    // iframe.value.src = iframe.value.script
+    t.value = Date.now()
   }
   sse.onopen = (e) => console.log(e)
   console.log('sse', sse)
