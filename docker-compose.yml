@@ -8,8 +8,8 @@ services:
     volumes:
       - ./services/nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./services/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
-      - ./services/nginx/certs/localhost.crt:/certs/localhost.crt
-      - ./services/nginx/certs/localhost.key:/certs/localhost.key
+        #- ./services/nginx/certs/localhost.crt:/certs/localhost.crt
+        #- ./services/nginx/certs/localhost.key:/certs/localhost.key
     ports:
       - 8080:80
     depends_on:

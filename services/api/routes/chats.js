@@ -90,7 +90,8 @@ async function chat(ctx, text) {
       const [html, style, script] = matches
 
       const sanitizedHtml = html.slice(3, -3).replace(/^html\n/, '')
-      const $ = cheerio.load()
+      console.log(sanitizedHtml)
+      const $ = cheerio.load(sanitizedHtml)
       const title = $('title').html()
 
       updatedPen = await ctx.db.Pen.update(
@@ -109,6 +110,7 @@ async function chat(ctx, text) {
     } else {
       const [html] = matches
       const sanitizedHtml = html.slice(3, -3).replace(/^html\n/, '')
+      console.log(sanitizedHtml)
       const $ = cheerio.load(sanitizedHtml)
       const title = $('title').html()
       const style = $('style').html()

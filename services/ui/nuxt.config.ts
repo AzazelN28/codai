@@ -1,5 +1,13 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  head: {
+    title: 'CodAI',
+    meta: [
+      { charset: 'utf8' },
+      { description: 'CodAI, code faster, better and error proner' },
+      { viewport: 'width=device-width, initial-scale=1' }
+    ]
+  },
   app: {
     rootId: 'codai'
   },
